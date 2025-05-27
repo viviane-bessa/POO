@@ -1,0 +1,55 @@
+package estruturaRepeticao;
+
+import java.util.Scanner;
+
+public class AlturaSexo_While_2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        final int TOTAL_PESSOAS = 50;
+
+        double maiorAltura = Double.MIN_VALUE;
+        double menorAltura = Double.MAX_VALUE;
+        double somaAlturasMulheres = 0.0;
+        int numeroMulheres = 0;
+        int numeroHomens = 0;
+        int count = 0;
+
+        while (count < TOTAL_PESSOAS) {
+            System.out.print("Digite a altura da pessoa " + (count + 1) + ": ");
+            double altura = scanner.nextDouble();
+
+            System.out.print("Digite o sexo da pessoa " + (count + 1) + " (M/F): ");
+            char sexo = scanner.next().charAt(0);
+
+            if (sexo == 'f') {
+                sexo = 'F';
+            } else if (sexo == 'm') {
+                sexo = 'M';
+            }
+
+            if (altura > maiorAltura) {
+                maiorAltura = altura;
+            }
+            if (altura < menorAltura) {
+                menorAltura = altura;
+            }
+
+            if (sexo == 'F') {
+                somaAlturasMulheres += altura;
+                numeroMulheres++;
+            } else if (sexo == 'M') {
+                numeroHomens++;
+            }
+
+            count++;
+        }
+
+        double mediaAlturaMulheres = (numeroMulheres > 0) ? somaAlturasMulheres / numeroMulheres : 0;
+
+        System.out.println("Maior altura do grupo: " + maiorAltura);
+        System.out.println("Menor altura do grupo: " + menorAltura);
+        System.out.println("Média de altura das mulheres: " + mediaAlturaMulheres);
+        System.out.println("Número de homens: " + numeroHomens);
+
+        scanner.close();
+    }
