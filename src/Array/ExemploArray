@@ -1,0 +1,27 @@
+package Array;
+
+import java.util.Scanner;
+
+public class ExemploArray {
+
+	public static void main(String[] args) {
+		//declaração do vetor, em Java chamamos de Array
+		 int[] Vet = new int[3];
+		 //int i;
+		 
+		 //Objeto Scanner, obrigatório para entrada de dados pelo teclado, pelo usuário
+         Scanner entrada = new Scanner(System.in);
+         
+         //Estrutura de repetição
+         for (int i=0; i<3; i++){
+             System.out.println("Entre com o valor: " +i);
+             Vet[i] = entrada.nextInt();                                   
+         }
+               
+        
+         System.out.println ("O vetor é:");
+         for (int i=0; i<3; i++){
+             System.out.println (+Vet[i]); 
+         }
+                           
+    }
