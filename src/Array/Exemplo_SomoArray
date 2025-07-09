@@ -1,0 +1,18 @@
+public class Exemplo_SomoArray {
+/*Calcular a soma dos elementos de um array
+*/
+
+	public static void main(String[] args) {
+		
+		//declaração
+		// int[] Vet = new int[3];
+		int[] numeros = {5, 10, 15, 20, 25};
+		int soma=0;		
+		
+		for (int i=0; i < numeros.length; i++) {
+			soma+= numeros[i]; //soma = soma + numeros[i]
+		}
+		
+		System.out.println ("A Soma do Array:" +soma);		
+	}
+}
