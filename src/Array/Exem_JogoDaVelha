@@ -1,0 +1,144 @@
+package estruturaRepeticao;
+
+public class Exem_JogoDaVelha {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+        // A matriz que representa o tabuleiro do jogo da velha
+        // Inicialmente, preenchemos com espaços vazios ou números para as posições
+        char[][] tabuleiro = {
+            {'1', '2', '3'},
+            {'4', '5', '6'},
+            {'7', '8', '9'}
+        };
+
+        char jogadorAtual = 'X'; // Começa com o jogador X
+        boolean jogoAcabou = false;
+        int jogadas = 0; // Contador de jogadas para verificar empate
+
+        System.out.println("__________________________________________________");
+        System.out.println("\t----- Jogo da Velha ----- ");
+        System.out.println("__________________________________________________");
+        System.out.println("\nBem-vindo ao Jogo da Velha!");
+        System.out.println("As posições são numeradas de 1 a 9, da esquerda para direita, de cima para baixo.");
+
+        // Loop principal do jogo
+        while (!jogoAcabou) {
+            // 1. Exibir o tabuleiro
+            System.out.println("\nTabuleiro Atual:");
+            System.out.println("-------------");
+            for (int i = 0; i < 3; i++) {
+                System.out.print("| ");
+                for (int j = 0; j < 3; j++) {
+                    System.out.print(tabuleiro[i][j] + " | ");
+                }
+                System.out.println("\n-------------");
+            }
+
+            // 2. Obter a jogada do jogador atual
+            int linha = -1, coluna = -1;
+            boolean jogadaValida = false;
+
+            while (!jogadaValida) {
+                System.out.print("\nJogador " + jogadorAtual + ", digite a posição (1-9): ");
+                int posicao = scanner.nextInt();
+
+                // Converte a posição (1-9) para índices da matriz (0-2)
+                switch (posicao) {
+                    case 1: linha = 0; coluna = 0; break;
+                    case 2: linha = 0; coluna = 1; break;
+                    case 3: linha = 0; coluna = 2; break;
+                    case 4: linha = 1; coluna = 0; break;
+                    case 5: linha = 1; coluna = 1; break;
+                    case 6: linha = 1; coluna = 2; break;
+                    case 7: linha = 2; coluna = 0; break;
+                    case 8: linha = 2; coluna = 1; break;
+                    case 9: linha = 2; coluna = 2; break;
+                    default:
+                        System.out.println("Posição inválida. Digite um número entre 1 e 9.");
+                        continue; // Pede a entrada novamente
+                }
+
+                // Verifica se a posição escolhida já está ocupada por 'X' ou 'O'
+                if (tabuleiro[linha][coluna] == 'X' || tabuleiro[linha][coluna] == 'O') {
+                    System.out.println("Esta posição já está ocupada. Escolha outra.");
+                } else {
+                    jogadaValida = true;
+                }
+            }
+
+            // 3. Fazer a jogada: Atualiza o tabuleiro com a marca do jogador
+            tabuleiro[linha][coluna] = jogadorAtual;
+            jogadas++; // Incrementa o contador de jogadas
+
+            // 4. Verificar condições de vitória
+            // --- Verificar linhas ---
+            for (int i = 0; i < 3; i++) {
+                if (tabuleiro[i][0] == jogadorAtual &&
+                    tabuleiro[i][1] == jogadorAtual &&
+                    tabuleiro[i][2] == jogadorAtual) {
+                    jogoAcabou = true;
+                    System.out.println("\nPARABÉNS! JOGADOR " + jogadorAtual + " VENCEU!");
+                    break; // Sai do loop de verificação de linhas
+                }
+            }
+            if (jogoAcabou) continue; // Se alguém venceu, pula o resto e exibe o tabuleiro final
+
+            // --- Verificar colunas ---
+            for (int j = 0; j < 3; j++) {
+                if (tabuleiro[0][j] == jogadorAtual &&
+                    tabuleiro[1][j] == jogadorAtual &&
+                    tabuleiro[2][j] == jogadorAtual) {
+                    jogoAcabou = true;
+                    System.out.println("\nPARABÉNS! JOGADOR " + jogadorAtual + " VENCEU!");
+                    break; // Sai do loop de verificação de colunas
+                }
+            }
+            if (jogoAcabou) continue;
+
+            // --- Verificar diagonais ---
+            // Diagonal principal
+            if (tabuleiro[0][0] == jogadorAtual &&
+                tabuleiro[1][1] == jogadorAtual &&
+                tabuleiro[2][2] == jogadorAtual) {
+                jogoAcabou = true;
+                System.out.println("\nPARABÉNS! JOGADOR " + jogadorAtual + " VENCEU!");
+            }
+            // Diagonal secundária
+            if (!jogoAcabou && // Só verifica se não venceu na diagonal principal
+                tabuleiro[0][2] == jogadorAtual &&
+                tabuleiro[1][1] == jogadorAtual &&
+                tabuleiro[2][0] == jogadorAtual) {
+                jogoAcabou = true;
+                System.out.println("\nPARABÉNS! JOGADOR " + jogadorAtual + " VENCEU!");
+            }
+            if (jogoAcabou) continue;
+
+            // 5. Verificar condição de empate (todas as 9 casas preenchidas e ninguém venceu)
+            if (jogadas == 9) {
+                jogoAcabou = true;
+                System.out.println("\nO JOGO TERMINOU EM EMPATE!");
+            }
+
+            // 6. Trocar de jogador para a próxima rodada, se o jogo não tiver acabado
+            if (!jogoAcabou) {
+                jogadorAtual = (jogadorAtual == 'X') ? 'O' : 'X';
+            }
+        }
+
+        // Exibir o tabuleiro final
+        System.out.println("\nTabuleiro Final:");
+        System.out.println("-------------");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(tabuleiro[i][j] + " | ");
+            }
+            System.out.println("\n-------------");
+        }
+
+        System.out.println("\nFim de jogo. Obrigado por jogar!");
+        scanner.close(); // Fecha o Scanner
+    }
+	}
