@@ -1,0 +1,39 @@
+public class Exemplo_IncrementoDecremento {
+
+	public static void main(String[] args) {
+		
+		/*	#1 int x=5, y, z;
+		 *	#2 y = ++x;
+		 *	#3 z = --x;
+		 *  #4 printf("%d %d %d", x, y, z);		  	
+		 */
+		   
+		
+		int x = 5, y=0, z=0;
+
+	    // Exibindo o valor inicial de x
+	    System.out.println("#1 Atribuição, temos: x = " + x + " y = " + y + " z = " + z);
+	    // Pré-incremento (++x): Incrementa x antes de atribuir a y
+	        
+	    //y = ++x;
+	    System.out.println("\n#2: y=++x, o valor da linha:" +(y=++x) + "\n Sendo: o valor de y =" +y + " O valor de x = " +x);
+	    System.out.println("#3: o valor de y = " +y + " O valor de x = " +x);   
+	    
+	    
+	    System.out.println("\nApós y = ++x:");
+	        System.out.println("x = " + x + " (x foi incrementado para 6 antes de ser atribuído a y)");
+	        System.out.println("y = " + y + " (y agora tem o valor incrementado de x, que é 6)");
+
+	     // Pré-decremento (--x): Decrementa x antes de atribuir a z
+	     //z = --x;
+	     System.out.println("\n#3: z = --x, o valor da linha:" +(z = --x) + "\n Sendo: o valor de z =" +z + " O valor de x = " +x);
+	     
+	     System.out.println("\nApós z = --x:");
+	     System.out.println("x = " + x + " (x foi decrementado para 5 antes de ser atribuído a z)");
+	     System.out.println("z = " + z + " (z agora tem o valor decrementado de x, que é 5)");
+
+	     // Imprimindo os valores finais
+	     System.out.printf("\n #4-Valores finais: x = %d, y = %d, z = %d%n", x, y, z);
+	    }
+	
+}
